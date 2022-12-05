@@ -6,9 +6,11 @@ import { Videos, Sidebar } from "./";
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("New");
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState(null);
 
   useEffect(() => {
+    setVideos(null);
+
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
       .then((data) => setVideos(data.items))
     }, [selectedCategory]);
@@ -19,7 +21,7 @@ const Feed = () => {
         <Sidebar selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 
         <Typography className="copyright" variant="body2" sx={{ mt: 1.5, color: "#fff", }}>
-          Copyright © 2022 Webshilla Media
+          Copyright © 2022 Itanand Media
         </Typography>
       </Box>
 
@@ -33,5 +35,6 @@ const Feed = () => {
     </Stack>
   );
 };
+
 
 export default Feed;
